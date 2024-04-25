@@ -1,0 +1,141 @@
+--[[
+
+		Gui2Lua™
+		10zOfficial
+		Version 1.0.0
+
+]]
+
+
+-- Instances
+
+local HI = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextLabel")
+
+-- Properties
+
+HI.Name = "HI"
+HI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+HI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TextLabel.Parent = HI
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.354790419, 0, 0.530927837, 0)
+TextLabel.Size = UDim2.new(0, 277, 0, 34)
+TextLabel.Font = Enum.Font.Unknown
+TextLabel.Text = ""
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14
+TextLabel.TextWrapped = true
+
+-- Scripts
+
+local function HGVFRVO_fake_script() -- TextLabel.TextChangeAnimation 
+	local script = Instance.new('LocalScript', TextLabel)
+
+	local textLabel = script.Parent -- Reference to the TextLabel where the script is attached
+	
+	local function animateTextChange(label, newText)
+	    local currentText = label.Text
+	    local length = #currentText
+	    -- Animate text disappearing
+	    for i = length, 0, -1 do
+	        label.Text = string.sub(currentText, 1, i)
+	        task.wait(0.05) -- Wait for 0.05 seconds before continuing the loop
+	    end
+	    -- Animate new text appearing
+	    for i = 1, #newText do
+	        label.Text = string.sub(newText, 1, i)
+	        task.wait(0.05) -- Wait for 0.05 seconds before continuing the loop
+	    end
+	end
+	
+	local function cycleTexts()
+	    while true do
+	        animateTextChange(textLabel, "D")
+	        task.wait(0.10) -- Wait for 2 seconds before changing the text again
+	        animateTextChange(textLabel, "E")
+			task.wait(0.10) -- Wait for 2 seconds before repeating the cycle
+			animateTextChange(textLabel, "L")
+			task.wait(0.10)
+			animateTextChange(textLabel, "U")
+			task.wait(0.10)
+			animateTextChange(textLabel, "S")
+			task.wait(0.10) -- Wait for 2 seconds before changing the text again
+			animateTextChange(textLabel, "I")
+			task.wait(0.10) -- Wait for 2 seconds before repeating the cycle
+			animateTextChange(textLabel, "O")
+			task.wait(0.10) -- Wait for 2 seconds before repeating the cycle
+			animateTextChange(textLabel, "N")
+			task.wait(0.10) -- Wait for 2 seconds before repeating the cycle
+			animateTextChange(textLabel, "Delusion.gg")
+			task.wait(1)
+			animateTextChange(textLabel, "go tap in")
+			task.wait(1)
+	    end
+	end
+	
+	cycleTexts()
+end
+coroutine.wrap(HGVFRVO_fake_script)()
+local function YKTQNQT_fake_script() -- TextLabel.FollowHumanoidRootPart 
+	local script = Instance.new('LocalScript', TextLabel)
+
+	local textLabel = script.Parent -- Reference to the TextLabel that needs to follow the player
+	local players = game:GetService("Players") -- Reference to the Players service
+	
+	-- Function to update the position of the TextLabel to follow the player's HumanoidRootPart
+	local function updatePosition()
+	    local localPlayer = players.LocalPlayer -- Get the local player
+	    if not localPlayer or not localPlayer.Character then return end -- Check if the local player and character exist
+	    
+	    local humanoidRootPart = localPlayer.Character:FindFirstChild("Head") -- Find the HumanoidRootPart
+	    if not humanoidRootPart then return end -- Check if the HumanoidRootPart exists
+	    
+	    -- Calculate the screen position of the HumanoidRootPart
+	    local camera = game.Workspace.CurrentCamera -- Get the current camera
+	    local screenPosition, onScreen = camera:WorldToScreenPoint(humanoidRootPart.Position)
+	    
+	    -- Update the TextLabel position if the HumanoidRootPart is on screen
+	    if onScreen then
+	        textLabel.Position = UDim2.new(0, screenPosition.X, 0, screenPosition.Y)
+	        textLabel.Visible = true
+	    else
+	        textLabel.Visible = false
+	    end
+	end
+	
+	-- Connect the RenderStepped event to update the TextLabel position every frame
+	game:GetService("RunService").RenderStepped:Connect(updatePosition)
+end
+coroutine.wrap(YKTQNQT_fake_script)()
+local function JRVJWG_fake_script() -- TextLabel.ColorChangeScript 
+	local script = Instance.new('LocalScript', TextLabel)
+
+	local textLabel = script.Parent  -- Reference to the TextLabel instance
+	
+	-- Define the colors to cycle through
+	local colors = {
+	    Color3.fromRGB(255, 255, 255),  -- White
+		Color3.fromRGB(131, 0, 255)     -- Purple
+	}
+	
+	local currentIndex = 1  -- Start with the first color
+	
+	-- Function to change the text label's color
+	local function changeColor()
+	    textLabel.TextColor3 = colors[currentIndex]  -- Set the current color
+	    currentIndex = currentIndex % #colors + 1  -- Move to the next color, loop back to the first color if at the end
+	end
+	
+	-- Main loop to change colors
+	while true do
+	    changeColor()  -- Change the color
+	    task.wait(0.79)  -- Wait for 2 seconds before changing again
+	end
+end
+coroutine.wrap(JRVJWG_fake_script)()
